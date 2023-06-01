@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Story } from '../components/Story'
+import { StoryForm } from '../components/StoryForm'
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ export const Home = () => {
         <Story />
       </LeftSection>
       <RightSection>
-        <div>Story Creator</div>
+        <StoryForm />
       </RightSection>
     </HomeWrapper>
   );

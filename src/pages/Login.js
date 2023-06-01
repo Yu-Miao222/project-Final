@@ -113,7 +113,7 @@ export const Login = () => {
       <InnerWrapper>
         <FormWrapper>
           <p> Join our story creator </p>
-          <p> where everyone is an artist</p>
+          <p> Where everyone is an artist</p>
           <form onSubmit={onFormSubmit}>
             <label htmlFor="username">Username</label>
             <input
