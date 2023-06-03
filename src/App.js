@@ -5,8 +5,9 @@ import { Home } from 'pages/Home';
 import { Login } from 'pages/Login';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
-import thoughts from 'reducers/thoughts';
+import thoughts from 'reducers/stories';
 import { MyStory } from 'pages/MyStory';
+import { CreateStoryForm } from 'pages/CreateStoryForm';
 import { Provider } from 'react-redux';
 import styled from 'styled-components';
 
@@ -42,6 +43,7 @@ export const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/MyStory" element={<MyStory />} />
+            <Route path="/CreateStory" element={<CreateStoryForm />} />
           </Routes>
         </MainWrapper>
       </BrowserRouter>

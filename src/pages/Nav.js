@@ -43,10 +43,10 @@ export const Nav = () => {
           <StyledNavLink to="/Login">Login</StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/SignUp">SignUp</StyledNavLink>
+          <StyledNavLink to="/CreateStory">CreateStory</StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/MyStory">My Story</StyledNavLink>
+          <StyledNavLink to="/MyStory">MyStory</StyledNavLink>
         </li>
       </ul>
     </NavWrapper>
