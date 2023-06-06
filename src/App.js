@@ -3,11 +3,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Nav } from 'pages/Nav';
 import { Home } from 'pages/Home';
 import { Login } from 'pages/Login';
+import { CreateStoryForm } from 'pages/CreateStoryForm';
+import { Mystory } from 'pages/MyStory';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
-import thoughts from 'reducers/stories';
-import { MyStory } from 'pages/MyStory';
-import { CreateStoryForm } from 'pages/CreateStoryForm';
+import stories from 'reducers/stories'
 import { Provider } from 'react-redux';
 import styled from 'styled-components';
 
@@ -28,7 +28,7 @@ const MainWrapper = styled.main`
 export const App = () => {
   const reducer = combineReducers({
     user: user.reducer,
-    thoughts: thoughts.reducer
+    stories: stories.reducer
   });
   const store = configureStore({ reducer });
 
@@ -42,7 +42,7 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/MyStory" element={<MyStory />} />
+            <Route path="/MyStory" element={<Mystory />} />
             <Route path="/CreateStory" element={<CreateStoryForm />} />
           </Routes>
         </MainWrapper>
