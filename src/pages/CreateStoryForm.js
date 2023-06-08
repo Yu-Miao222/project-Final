@@ -27,7 +27,6 @@ export const CreateStoryForm = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
 
-  // const accessToken = localStorage.getItem('accessToken');
   const convertTagsToArray = (tagsObject) => {
     const tagsArray = [];
     Object.keys(tagsObject).forEach((key) => {

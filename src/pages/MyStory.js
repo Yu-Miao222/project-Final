@@ -4,21 +4,25 @@ import { useNavigate } from 'react-router-dom';
 import stories from 'reducers/stories';
 import { API_URL } from 'utils/urls';
 import user from 'reducers/user';
+import { StoryDetails } from 'components/StoryDetails';
 
 export const Mystory = () => {
-  const storyItems = useSelector((store) => store.stories.items);
+  // const storyItems = useSelector((store) => store.stories.items);
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
   const username = useSelector((store) => store.user.username);
   const navigate = useNavigate();
+  console.log(accessToken)
   useEffect(() => {
-    if (!accessToken) {
-      navigate('/MyStory')
+    console.log('useffect mystory')
+    if (accessToken === null) {
+      console.log('go login')
+      navigate('/Login')
     }
   });
+  console.log('MyStory')
 
   useEffect(() => {
-    console.log(accessToken)
     const options = {
       method: 'GET',
       headers: {
@@ -36,7 +40,10 @@ export const Mystory = () => {
           dispatch(stories.actions.setError(data.response));
           dispatch(stories.actions.setItems([]));
         }
-      });
+      })
+      .catch(((error) => {
+        console.error('Error:', error)
+      }))
   }, [accessToken, dispatch])
 
   const onLogoutButtonClick = () => {
@@ -50,9 +57,7 @@ export const Mystory = () => {
     <>
       <button type="button" onClick={onLogoutButtonClick}>LOGOUT</button>
       {username ? (<h2>THESE ARE THE Stories OF {username.toUpperCase()}</h2>) : ''}
-      {storyItems.map((item) => {
-        return (<p key={item.id}>{item.message}</p>)
-      })}
+      <StoryDetails />
     </>
   );
 }

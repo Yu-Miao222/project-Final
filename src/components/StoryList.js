@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector, batch } from 'react-redux'
-// import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 import stories from 'reducers/stories';
 import { API_URL } from 'utils/urls';
+import { StoryCard } from './StoryCard';
 
 export const StoryList = () => {
-  const [liked, setLiked] = useState([]);
-  // const accessToken = localStorage.getItem('accessToken')
   const accessToken = useSelector((store) => store.user.accessToken);
   const dispatch = useDispatch()
-  const storyList = useSelector((store) => store.stories.items)
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!accessToken) {
-  //     navigate('/login')
-  //   }
-  // }); // , [accessToken]);
+  useEffect(() => {
+    if (!accessToken) {
+      navigate('/')
+    }
+  }); // , [accessToken]);
 
   // Fetch all stores
   useEffect(() => {
+    console.log('useeffect storylist')
     const options = {
       method: 'GET',
       headers: {
@@ -27,32 +26,30 @@ export const StoryList = () => {
         Authorization: accessToken
       }
     }
-    console.log(accessToken)
     fetch(API_URL('stories'), options)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         if (data.success) {
-          batch(() => {
-            dispatch(stories.actions.setItems(data.response))
-            dispatch(stories.actions.setError(null))
-          })
+          dispatch(stories.actions.setError(null));
+          dispatch(stories.actions.setItems(data.response));
         } else {
-          batch(() => {
-            dispatch(stories.actions.setItems([]))
-            dispatch(stories.actions.setError(data.response))
-          })
+          dispatch(stories.actions.setError(data.response));
+          dispatch(stories.actions.setItems([]));
         }
       })
       .catch(((error) => {
         console.error('Error:', error)
       }))
-  }, [])
-
+  }, [accessToken, dispatch])
+  const storyList = useSelector((store) => store.stories.items);
   return (
     <div>
-      <div>storyList = {JSON.stringify(storyList)}</div>
-      <div>like = {JSON.stringify(liked)}</div>
-      <button type="button" onClick={() => setLiked([...liked, 'Some Item'])}>Like an Item</button>
+      {storyList.map((story) => (
+        <StoryCard
+          key={story.id}
+          story={story} />
+      ))}
     </div>
   )
 }

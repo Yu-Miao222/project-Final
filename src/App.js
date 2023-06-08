@@ -12,8 +12,8 @@ import { Provider } from 'react-redux';
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
-  background-color: #845ec2;
-  color: #fff;
+  background-color: #C3CBE3;
+  color: #0D2464;
   padding: 20px;
 `;
 

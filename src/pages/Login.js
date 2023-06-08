@@ -12,25 +12,25 @@ const OuterWrapper = styled.div`
   width: 100%;
   justify-content: center;
   text-align: center;
-  
+
 `
 const InnerWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    border: 1px solid #845ec2;
-    box-shadow: 4px 4px 8px #845ec2;
+    border: 1px solid #808FB0;
+    box-shadow: 4px 4px 8px #6874A3;
     padding: 10px;
     margin: 120px;
+    background-color: #C3CBE3;
 
 `
 const FormWrapper = styled.div`
-
     p {
         font-size: 26px;
         font-weight: 500;
-        color: purple;
+        color: #0D2464;
     }
     form {
         display: flex;
@@ -50,10 +50,10 @@ const FormWrapper = styled.div`
         cursor: pointer;
     }
     button {
-        background-color: #FFDCB6;
+        background-color: #0D2464;
         border: none;
         border-radius: 20px;
-        color: black;
+        color: white;
         padding: 10px 30px;
         text-align: center;
         text-decoration: none;
@@ -77,11 +77,14 @@ export const Login = () => {
   const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.accessToken);
   useEffect(() => {
+    console.log('login useeffect')
     if (accessToken) {
+      console.log('login accesstoken ok')
       navigate('/')
+    } else {
+      console.log('login no token')
     }
   }, [accessToken, navigate]);
-
   const onFormSubmit = (event) => {
     event.preventDefault();
     const options = {
