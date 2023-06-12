@@ -1,6 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import stories from 'reducers/stories';
 import { API_URL } from 'utils/urls';
 import { StoryCard } from './StoryCard';
@@ -8,13 +9,13 @@ import { StoryCard } from './StoryCard';
 export const StoryList = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
   const dispatch = useDispatch()
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!accessToken) {
-      navigate('/')
-    }
-  }); // , [accessToken]);
+  // useEffect(() => {
+  //   if (!accessToken) {
+  //     navigate('/')
+  //   }
+  // }, [accessToken, navigate]);
 
   // Fetch all stores
   useEffect(() => {
@@ -43,12 +44,20 @@ export const StoryList = () => {
       }))
   }, [accessToken, dispatch])
   const storyList = useSelector((store) => store.stories.items);
+
+  console.log('storyList start')
+  console.log(storyList)
+  console.log('storyList end')
+  storyList.map((story) => (
+    console.log(story)
+  ))
+
   return (
     <div>
-      {storyList.map((story) => (
+      {storyList.map((storyListItem) => (
         <StoryCard
-          key={story.id}
-          story={story} />
+          key={storyListItem.story._id}
+          singleStoryListItem={storyListItem} />
       ))}
     </div>
   )

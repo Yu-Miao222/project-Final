@@ -1,8 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+// import { useSelector } from 'react-redux';
 import { Tag } from './TagsVisual';
 
 export const StoryDetails = ({ storyInfo }) => {
+  // const [StoryDetails, setStoryDetails] = useState([]);
+  // const accessToken = useSelector((store) => store.user.accessToken);
   return (
     <div>
       {storyInfo.map((story) => {

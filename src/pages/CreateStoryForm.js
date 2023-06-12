@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react'
+import styled from 'styled-components';
 import Checkbox from 'components/Checkbox'
 import { API_URL } from 'utils/urls';
 import stories from 'reducers/stories';
@@ -78,23 +80,37 @@ export const CreateStoryForm = () => {
     }));
   }
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="Story title"
-          value={storyName}
-          onChange={handleStoryName} />
-        <input
-          type="url"
-          placeholder="upload an image to your story"
-          value={storyImg}
-          onChange={handleStoryImg} />
-        <input
-          type="text"
-          placeholder="Start your story here"
-          value={storyContent}
-          onChange={handleStoryContent} />
+    <OutterWrapper>
+      <InnerWrapper>
+        <FormWrapper>
+          <form onSubmit={onSubmit}>
+            <label htmlFor="title">Story Title</label>
+            <input
+              type="text"
+              id="title"
+              placeholder="Enter your story tile"
+              value={storyName}
+              onChange={handleStoryName} />
+
+            <label htmlFor="image">Story Image</label>
+            <input
+              type="url"
+              id="image"
+              placeholder="copy image address"
+              value={storyImg}
+              onChange={handleStoryImg} />
+
+            <label htmlFor="content">Story Content</label>
+            <textarea
+              type="text"
+              id="content"
+              rows="8"
+              cols="33"
+              placeholder="Start your story here..."
+              value={storyContent}
+              onChange={handleStoryContent} />
+          </form>
+        </FormWrapper>
         <div>
           <p>Fiction</p>
           <div>
@@ -108,7 +124,85 @@ export const CreateStoryForm = () => {
           </div>
         </div>
         <button type="submit">Submit Story</button>
-      </form>
-    </div>
+      </InnerWrapper>
+    </OutterWrapper>
   )
 }
+
+const OutterWrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  p {
+    font-size: 22px;
+    color: #0D2464;
+    margin: 10px;
+  }
+  label {
+    color: #6874A3;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+`
+const InnerWrapper = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #808FB0;
+  box-shadow: 4px 4px 8px #6874A3;
+  padding: 10px;
+  margin: 120px;
+  background-color: #ffffff; */
+  button {
+    background-color: #0D2464;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    cursor: pointer;
+    }
+`
+const FormWrapper = styled.div`
+  padding-top: 10%;
+   
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 30vw;
+      height: auto;
+    }
+    input {  
+      display: flex;
+      padding: 10px;
+      border: grey solid 1px;
+      border-radius: 5px;
+      width: 300px;
+      cursor: pointer;
+    }
+    label {
+      margin: 10px;
+      padding-top: 5px;
+      color: #0D2464;
+      font-size: 24px;
+      font-weight: 500;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    textarea {
+      resize: none;
+      width: 350px;
+      height: 200px;
+      border: grey solid 1px;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+    }       
+`

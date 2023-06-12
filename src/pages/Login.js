@@ -1,73 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import user from 'reducers/user';
 import { API_URL } from 'utils/urls';
-
-const OuterWrapper = styled.div`
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  justify-content: center;
-  text-align: center;
-
-`
-const InnerWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    border: 1px solid #808FB0;
-    box-shadow: 4px 4px 8px #6874A3;
-    padding: 10px;
-    margin: 120px;
-    background-color: #C3CBE3;
-
-`
-const FormWrapper = styled.div`
-    p {
-        font-size: 26px;
-        font-weight: 500;
-        color: #0D2464;
-    }
-    form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 30vw;
-        height: auto;
-        padding: 20px;
-    }
-    input {  
-        display: flex;
-        margin: 5px;
-        padding: 10px;
-        border-radius: 5px;
-        width: 200px;
-        cursor: pointer;
-    }
-    button {
-        background-color: #0D2464;
-        border: none;
-        border-radius: 20px;
-        color: white;
-        padding: 10px 30px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        margin: 10px 2px;
-        cursor: pointer;
-    }
-`
-const RLWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
 
 export const Login = () => {
   const [username, setUsername] = useState('');
@@ -154,3 +91,68 @@ export const Login = () => {
 
   )
 }
+
+const OuterWrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+
+`
+const InnerWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #808FB0;
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px #6874A3;
+    margin: 3%;
+    background-color: #F3F3FB;
+
+`
+const FormWrapper = styled.div`
+  
+    p {
+        font-size: 26px;
+        font-weight: 500;
+        color: #0D2464;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        padding: 10px;
+    }
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+    }
+    input {  
+        display: flex;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        width: 200px;
+        cursor: pointer;
+    }
+    button {
+        background-color: #0D2464;
+        border: none;
+        border-radius: 20px;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px 2px;
+        cursor: pointer;
+    }
+`
+const RLWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+

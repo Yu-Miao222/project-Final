@@ -9,11 +9,10 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import stories from 'reducers/stories'
 import { Provider } from 'react-redux';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const HeaderWrapper = styled.div`
-  background-color: #C3CBE3;
-  color: #0D2464;
+  background-color: #FFD39A;
   padding: 20px;
 `;
 
