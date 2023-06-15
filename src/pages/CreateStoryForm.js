@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react'
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components/macro';
 import Checkbox from 'components/Checkbox'
 import { API_URL } from 'utils/urls';
 import stories from 'reducers/stories';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const FictionArray = [
   { value: 'fantasy', title: 'Fantasy' },
@@ -27,7 +28,19 @@ export const CreateStoryForm = () => {
   const [storyContent, setStoryContent] = useState();
   // const dispatch = useDispatch;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.accessToken);
+
+  useEffect(() => {
+    console.log('createstoryform useeffect')
+    if (accessToken) {
+      console.log('login accesstoken ok')
+      // navigate('/')
+    } else {
+      console.log('login no token')
+      navigate('/Login')
+    }
+  }, [accessToken, navigate]);
 
   const convertTagsToArray = (tagsObject) => {
     const tagsArray = [];
@@ -39,7 +52,9 @@ export const CreateStoryForm = () => {
     return tagsArray;
   }
   // Submit new story
-  const onSubmit = () => {
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    console.log('CreateStory onSubmit')
     const options = {
       method: 'POST',
       headers: {
@@ -60,6 +75,7 @@ export const CreateStoryForm = () => {
       .then((data) => {
         dispatch(stories.actions.setNewStory(data.response))
       })
+    navigate('/MyStory')
   }
   const handleStoryName = (event) => {
     setStoryName(event.target.value)
@@ -81,50 +97,42 @@ export const CreateStoryForm = () => {
   }
   return (
     <OutterWrapper>
-      <InnerWrapper>
-        <FormWrapper>
-          <form onSubmit={onSubmit}>
-            <label htmlFor="title">Story Title</label>
-            <input
-              type="text"
-              id="title"
-              placeholder="Enter your story tile"
-              value={storyName}
-              onChange={handleStoryName} />
+      <FormWrapper>
+        <form onSubmit={onFormSubmit}>
+          <label htmlFor="title" className="label">Story Title</label>
+          <input
+            type="text"
+            id="title"
+            placeholder="Enter your story tile"
+            value={storyName}
+            onChange={handleStoryName} />
 
-            <label htmlFor="image">Story Image</label>
-            <input
-              type="url"
-              id="image"
-              placeholder="copy image address"
-              value={storyImg}
-              onChange={handleStoryImg} />
+          <label htmlFor="image" className="label">Story Image</label>
+          <input
+            type="url"
+            id="image"
+            placeholder="copy image address"
+            value={storyImg}
+            onChange={handleStoryImg} />
 
-            <label htmlFor="content">Story Content</label>
-            <textarea
-              type="text"
-              id="content"
-              rows="8"
-              cols="33"
-              placeholder="Start your story here..."
-              value={storyContent}
-              onChange={handleStoryContent} />
-          </form>
-        </FormWrapper>
-        <div>
-          <p>Fiction</p>
-          <div>
+          <label htmlFor="content" className="label">Story Content</label>
+          <textarea
+            type="text"
+            id="content"
+            rows="8"
+            cols="33"
+            placeholder="Start your story here..."
+            value={storyContent}
+            onChange={handleStoryContent} />
+          <CheckBoxWrapper>
+            <p>Fiction</p>
             {FictionArray.map(({ title, value }) => <Checkbox key={value} title={title} value={value} handleOnChange={handleOnChange} tags={tags} />)}
-          </div>
-        </div>
-        <div>
-          <p>NonFiction</p>
-          <div>
+            <p>NonFiction</p>
             {NonFictionArray.map(({ title, value }) => <Checkbox key={value} title={title} value={value} handleOnChange={handleOnChange} tags={tags} />)}
-          </div>
-        </div>
-        <button type="submit">Submit Story</button>
-      </InnerWrapper>
+          </CheckBoxWrapper>
+          <button type="submit">Submit Story</button>
+        </form>
+      </FormWrapper>
     </OutterWrapper>
   )
 }
@@ -135,43 +143,24 @@ const OutterWrapper = styled.div`
   width: 100%;
   justify-content: center;
   text-align: center;
-  p {
-    font-size: 22px;
-    color: #0D2464;
-    margin: 10px;
-  }
-  label {
-    color: #6874A3;
-    font-size: 18px;
-    font-weight: 500;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  }
+
 `
-const InnerWrapper = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  border: 1px solid #808FB0;
-  box-shadow: 4px 4px 8px #6874A3;
-  padding: 10px;
-  margin: 120px;
-  background-color: #ffffff; */
-  button {
-    background-color: #0D2464;
-    border: none;
-    border-radius: 20px;
-    color: white;
-    padding: 10px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 20px;
-    cursor: pointer;
-    }
+const CheckBoxWrapper = styled.div`
+
+    p {
+      font-size: 22px;
+      color: #0D2464;
+      margin: 10px;
+    } 
+    label {
+      color: #6874A3;
+      font-size: 18px;
+      font-weight: 500;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    } 
+ 
 `
 const FormWrapper = styled.div`
-  padding-top: 10%;
    
     form {
       display: flex;
@@ -181,15 +170,15 @@ const FormWrapper = styled.div`
       width: 30vw;
       height: auto;
     }
-    input {  
+    /* input {  
       display: flex;
       padding: 10px;
       border: grey solid 1px;
       border-radius: 5px;
       width: 300px;
       cursor: pointer;
-    }
-    label {
+    } */
+    #label {
       margin: 10px;
       padding-top: 5px;
       color: #0D2464;
@@ -204,5 +193,19 @@ const FormWrapper = styled.div`
       border: grey solid 1px;
       border-radius: 5px;
       font-family: Arial, sans-serif;
-    }       
+      overflow: scroll;
+    }  
+    button {
+    background-color: #0D2464;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    cursor: pointer;
+    }  
+
 `

@@ -11,19 +11,6 @@ import stories from 'reducers/stories'
 import { Provider } from 'react-redux';
 import styled from 'styled-components/macro';
 
-const HeaderWrapper = styled.div`
-  background-color: #FFD39A;
-  padding: 20px;
-`;
-
-const MainWrapper = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 80px); /* Subtract header height */
-`;
-
 export const App = () => {
   const reducer = combineReducers({
     user: user.reducer,
@@ -37,15 +24,28 @@ export const App = () => {
         <HeaderWrapper>
           <Nav />
         </HeaderWrapper>
-        <MainWrapper>
+        <div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/MyStory" element={<Mystory />} />
             <Route path="/CreateStory" element={<CreateStoryForm />} />
           </Routes>
-        </MainWrapper>
+        </div>
       </BrowserRouter>
     </Provider>
   );
 };
+
+const HeaderWrapper = styled.div`
+  background-color: #FFD39A;
+  padding: 20px;
+`;
+
+// const MainWrapper = styled.main`
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   justify-content: center;
+//   height: calc(100vh - 80px); /* Subtract header height */
+// `;

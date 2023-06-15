@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 // import { useNavigate } from 'react-router-dom';
 import stories from 'reducers/stories';
 import { API_URL } from 'utils/urls';
+import styled from 'styled-components/macro';
 import { StoryCard } from './StoryCard';
 
 export const StoryList = () => {
@@ -53,12 +54,20 @@ export const StoryList = () => {
   ))
 
   return (
-    <div>
+    <AllStoryWrapper>
       {storyList.map((storyListItem) => (
         <StoryCard
           key={storyListItem.story._id}
           singleStoryListItem={storyListItem} />
       ))}
-    </div>
+    </AllStoryWrapper>
   )
 }
+
+const AllStoryWrapper = styled.div`
+ padding: 3%;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ grid-gap: 5%;
+ 
+`
