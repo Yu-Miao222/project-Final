@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import stories from 'reducers/stories';
 import { API_URL } from 'utils/urls';
 import styled from 'styled-components/macro';
+import user from 'reducers/user';
 import { StoryCard } from './StoryCard';
 
 export const StoryList = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
+
   const dispatch = useDispatch()
   // const navigate = useNavigate();
 
@@ -44,6 +46,7 @@ export const StoryList = () => {
         console.error('Error:', error)
       }))
   }, [accessToken, dispatch])
+
   const storyList = useSelector((store) => store.stories.items);
 
   console.log('storyList start')
@@ -52,9 +55,16 @@ export const StoryList = () => {
   storyList.map((story) => (
     console.log(story)
   ))
+  const onLogoutButtonClick = () => {
+    dispatch(user.actions.setAccessToken(null));
+    dispatch(user.actions.setUsername(null));
+    dispatch(user.actions.setUserId(null));
+    dispatch(user.actions.setError(null));
+  }
 
   return (
     <AllStoryWrapper>
+      <button type="button" onClick={onLogoutButtonClick}>LOGOUT</button>
       {storyList.map((storyListItem) => (
         <StoryCard
           key={storyListItem.story._id}

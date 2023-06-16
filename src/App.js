@@ -38,6 +38,7 @@ export const App = () => {
 };
 
 const HeaderWrapper = styled.div`
+  display: flex;
   background-color: #FFD39A;
   padding: 20px;
 `;

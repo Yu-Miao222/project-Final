@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
-const NavWrapper = styled.nav`
+const NavWrapper = styled.div`
   width: 100%;
   height: 40px;
   display: flex;
@@ -22,12 +22,17 @@ const NavWrapper = styled.nav`
   }
 `;
 
-const HeaderText = styled.h1`
+const HeaderText = styled.div`
+  h1{
   margin: 0 10px;
   padding: 0 10px;
   font-size: 36px;
-  font-style: italic;
-
+  font-weight: 600;
+  background-image: linear-gradient(to left, #553c9a, #b393d3);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  }
 `;
 const StyledNavLink = styled(NavLink)`
   text-decoration: none; 
@@ -37,14 +42,14 @@ export const Nav = () => {
   return (
     <NavWrapper>
       <HeaderText>
-        <StyledNavLink to="/">Your Story Creator</StyledNavLink>
+        <StyledNavLink to="/"><h1>Your Story Creator</h1></StyledNavLink>
       </HeaderText>
       <ul>
         <li>
           <StyledNavLink to="/">Home</StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/Login">Login</StyledNavLink>
+          <StyledNavLink to="/Login">Login/Register</StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/CreateStory">CreateStory</StyledNavLink>

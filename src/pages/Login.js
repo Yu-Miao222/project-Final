@@ -53,8 +53,7 @@ export const Login = () => {
     <OuterWrapper>
       <InnerWrapper>
         <FormWrapper>
-          <p> Join our story creator </p>
-          <p> Where everyone is an artist</p>
+          <p>Welcome back</p>
           <form onSubmit={onFormSubmit}>
             <label htmlFor="username">Username</label>
             <input
@@ -94,11 +93,10 @@ export const Login = () => {
 
 const OuterWrapper = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   justify-content: center;
   text-align: center;
-
 `
 const InnerWrapper = styled.div`
     display: flex;
@@ -109,17 +107,19 @@ const InnerWrapper = styled.div`
     border-radius: 10px;
     box-shadow: 4px 4px 8px #6874A3;
     margin: 3%;
+    padding: 5%;
     background-color: #F3F3FB;
 
 `
 const FormWrapper = styled.div`
-  
     p {
         font-size: 26px;
-        font-weight: 500;
+        font-weight: 200;
+        font-style: italic;
         color: #0D2464;
+        text-shadow: 2px 2px 2px  #9db4f1;
         font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        padding: 10px;
+        padding: 0 10px;
     }
     form {
         display: flex;

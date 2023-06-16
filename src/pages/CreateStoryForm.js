@@ -38,7 +38,6 @@ export const CreateStoryForm = () => {
       // navigate('/')
     } else {
       console.log('login no token')
-      navigate('/Login')
     }
   }, [accessToken, navigate]);
 
@@ -95,6 +94,13 @@ export const CreateStoryForm = () => {
       [key]: !currentValue
     }));
   }
+  // if (!accessToken) {
+  //   return (
+  //     <div>
+  //       <p>Please login first.</p>
+  //     </div>
+  //   );
+  // }
   return (
     <OutterWrapper>
       <FormWrapper>
