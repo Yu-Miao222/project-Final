@@ -176,14 +176,15 @@ const FormWrapper = styled.div`
       width: 30vw;
       height: auto;
     }
-    /* input {  
-      display: flex;
+    input {  
+      /* display: flex;
       padding: 10px;
-      border: grey solid 1px;
+      border: none;
       border-radius: 5px;
       width: 300px;
       cursor: pointer;
-    } */
+      background-color: #F3F3FB; */
+    }
     #label {
       margin: 10px;
       padding-top: 5px;
@@ -196,22 +197,24 @@ const FormWrapper = styled.div`
       resize: none;
       width: 350px;
       height: 200px;
-      border: grey solid 1px;
+      border: none;
+      /* border: grey solid 1px; */
       border-radius: 5px;
       font-family: Arial, sans-serif;
       overflow: scroll;
+      background-color: #F3F3FB;
     }  
     button {
-    background-color: #0D2464;
-    border: none;
-    border-radius: 20px;
-    color: white;
-    padding: 10px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 20px;
-    cursor: pointer;
+      background-color: #0D2464;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      padding: 10px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      cursor: pointer;
     }  
 
 `

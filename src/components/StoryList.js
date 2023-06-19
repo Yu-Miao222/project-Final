@@ -64,7 +64,7 @@ export const StoryList = () => {
 
   return (
     <AllStoryWrapper>
-      <button type="button" onClick={onLogoutButtonClick}>LOGOUT</button>
+      <button type="button" onClick={onLogoutButtonClick} id="logout">LOGOUT</button>
       {storyList.map((storyListItem) => (
         <StoryCard
           key={storyListItem.story._id}
@@ -76,8 +76,20 @@ export const StoryList = () => {
 
 const AllStoryWrapper = styled.div`
  padding: 3%;
- display: grid;
- grid-template-columns: 1fr 1fr;
- grid-gap: 5%;
- 
+ display: flex;
+ flex-direction: column;
+
+ #logout {
+    width:10%;
+    background-color: #0D2464;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 2px;
+    cursor: pointer;
+    }
 `

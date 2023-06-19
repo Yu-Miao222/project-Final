@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 export const Home = () => {
   return (
     <HomeWrapper>
+
       <h2>Join our <span className="underlined underline-clip">Story</span> creator where <span className="underlined underline-mask">Everyone </span>is an <span className="underlined underline-overflow">Artist</span></h2>
       <ReferenceBox>
         <LearnLink><p>Want <br /> To learn <br /> how to write <br /> stories? </p><a href="https://soyouwanttowrite.org/blogs/syww/the-top-10-tips-for-writing-great-short-stories" className="anchor">Click Here</a></LearnLink>
@@ -89,7 +90,6 @@ const LearnLink = styled.div`
   flex-direction: row;
   border: 3px solid #808FB0;
   margin-right: 15px;
- 
   background-color: #2B2730;
   color: #FFFBEB;
   p {

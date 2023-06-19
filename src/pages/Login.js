@@ -53,7 +53,7 @@ export const Login = () => {
     <OuterWrapper>
       <InnerWrapper>
         <FormWrapper>
-          <p>Welcome back</p>
+          <p>Welcome Back</p>
           <form onSubmit={onFormSubmit}>
             <label htmlFor="username">Username</label>
             <input

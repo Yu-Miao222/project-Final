@@ -23,6 +23,9 @@ export const StoryCard = ({ singleStoryListItem }) => {
 
   // Like-function for stories
   const onLikeClick = async (storied) => {
+    console.log('onLikeClick')
+    console.log(liked)
+    // const liked = useSelector((store) => store.)
     if (liked && liked.includes(storied)){
     } else {
       const options = {
@@ -33,9 +36,19 @@ export const StoryCard = ({ singleStoryListItem }) => {
         }
       }
       await fetch(API_URL(`stories/${storied}`), options)
-        .then((response) => response.json())
+        .then((response) => {
+          const resp = response
+          const js = response.json()
+          console.log(resp)
+          console.log(js)
+          // response.json()
+        })
         .then(() => {
+          console.log('liked')
+          console.log(liked)
           setLiked(liked ? liked.concat(storied) : [storied])
+          console.log('like updated')
+          console.log(liked)
         })
     }
   }
@@ -64,9 +77,9 @@ export const StoryCard = ({ singleStoryListItem }) => {
         {singleStoryListItem && (
           <DescriptionImagesTagsDiv>
             <Link to={`/stories/${singleStoryListItem.story._id}`}>
-              {/* <ImageDiv>
-                {singleStory.story.tags.includes('breakfast') ? <img src={BREAKFAST} /> : singleStory.story.tags.includes('lunch') ? <img src={LUNCH} /> : singleStory.story.tags.includes('dinner') ? <img src={DINNER} /> : singleRecipe.recipe.tags.includes('snack') ? <img src={SNACK} /> :  <img src={FOOD} />}
-                </ImageDiv> */}
+              <div>
+                <img alt="storyImg" src={singleStoryListItem.story.storyImg} />
+              </div>
               <DescriptionDiv>
                 <h3>{singleStoryListItem.story.name}</h3>
                 <p>{singleStoryListItem.story.storyContent}</p>
@@ -80,15 +93,15 @@ export const StoryCard = ({ singleStoryListItem }) => {
           </DescriptionImagesTagsDiv>
         )}
         <LikedContainer>
-          {/* {singleStory.userId === userId && <button type="button" onClick={() => onDeleteClick(singleStory._id)} storied={singleStory._id}>
-              <svg
-                width="10"
-                height="15"
-                viewBox="0 0 26 26"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 2L24 24M24 2L2 24" strokeLinecap="round" />
-              </svg>
-            </button>} */}
+          {/* {singleStoryListItem.userId === userId && <button type="button" onClick={() => onDeleteClick(singleStoryListItem._id)} storied={singleStoryListItem._id}>
+            <svg
+              width="10"
+              height="15"
+              viewBox="0 0 26 26"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 2L24 24M24 2L2 24" strokeLinecap="round" />
+            </svg>
+          </button>} */}
           <button type="button" onClick={() => onLikeClick(singleStoryListItem._id)} className={liked ? 'liked' : 'notLiked'}>
             <svg
               width="17"
@@ -113,6 +126,7 @@ export const StoryCard = ({ singleStoryListItem }) => {
               // minute: '2-digit',
               // hour12: false
             })}`}</span>
+            {/* <p>{singleStoryListItem.isComplete}</p> */}
           </Link>
         </SmallDiv>
       </StoryContainer>
@@ -174,4 +188,3 @@ const DescriptionDiv = styled.div`
 `
 const TagContainer = styled.div`
 `
-
