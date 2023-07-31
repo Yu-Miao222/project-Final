@@ -144,6 +144,7 @@ export const CreateStoryForm = () => {
 }
 
 const OutterWrapper = styled.div`
+  padding: 2%;
   display: flex;
   height: 100vh;
   width: 100%;

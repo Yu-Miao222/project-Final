@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import { API_URL } from 'utils/urls';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import TagsVisual from './TagsVisual'
+// import TagsVisual from './TagsVisual'
 
 export const StoryCard = ({ singleStoryListItem }) => {
   // const userId = useSelector((store) => store.user.userId)
@@ -85,11 +85,11 @@ export const StoryCard = ({ singleStoryListItem }) => {
                 <p>{singleStoryListItem.story.storyContent}</p>
               </DescriptionDiv>
             </Link>
-            <TagContainer>
+            {/* <TagContainer>
               {singleStoryListItem.story.tags.map((tag, index) => {
                 return <TagsVisual tag={tag} key={index} />
               })}
-            </TagContainer>
+            </TagContainer> */}
           </DescriptionImagesTagsDiv>
         )}
         <LikedContainer>
@@ -115,7 +115,7 @@ export const StoryCard = ({ singleStoryListItem }) => {
           </button>
           <p>{singleStoryListItem.likes} likes</p>
         </LikedContainer>
-        <SmallDiv>
+        <NameAndDateBox>
           <Link to={`/users/${singleStoryListItem.userId}`}>
             <p>{singleStoryListItem.username}&nbsp;&nbsp;</p>
             <span>{`${new Date(singleStoryListItem.createdAt).toLocaleDateString('en-us', {
@@ -126,20 +126,18 @@ export const StoryCard = ({ singleStoryListItem }) => {
               // minute: '2-digit',
               // hour12: false
             })}`}</span>
-            {/* <p>{singleStoryListItem.isComplete}</p> */}
           </Link>
-        </SmallDiv>
+        </NameAndDateBox>
       </StoryContainer>
     </StoryListWrapper>
   )
 }
-// {/* )} */}
 const StoryListWrapper = styled.div`
   display: flex;
   justify-content: center;
-  border: 1px blue solid;
+  border: none;
   border-radius: 18px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 10px;
   margin: 10px;
 `
@@ -157,12 +155,13 @@ const LikedContainer = styled.div`
   }
 `
 const DescriptionImagesTagsDiv = styled.div`
+  float: left;
 
   a{
     text-decoration: none;
   }
 `
-const SmallDiv = styled.div`
+const NameAndDateBox = styled.div`
   
   p{
     color: pink;
@@ -185,6 +184,4 @@ const DescriptionDiv = styled.div`
     font-size: 24px;
     color: green;
   }
-`
-const TagContainer = styled.div`
 `
